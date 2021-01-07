@@ -1,0 +1,2 @@
+FLASK_APP=FAT
+FLASK_ENV=development
