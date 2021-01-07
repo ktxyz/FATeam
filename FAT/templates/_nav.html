@@ -1,16 +1,16 @@
 <nav>
     <ul class="nav justify-content-end">
         {% if session['user'] %}
-        <li class="nav-item">
-            <span>{{ session['user'] }}</span>
+        <li class="nav-item" style="margin-right: -1.8rem;">
+            <a class="nav-link disabled" tabindex="-1" aria-disabled="true">{{ session['user']['name'] }}, </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-danger fw-bold" href="#" tabindex="-1" aria-disabled="true">Logout</a>
+            <a class="nav-link text-danger fw-bold" href="/auth/logout" tabindex="-1" aria-disabled="true">Logout</a>
         </li>
         {% else %}
 
         <li class="nav-item">
-            <a class="nav-link text-primary fw-bold" href="#" tabindex="-1" aria-disabled="true">Login</a>
+            <a class="nav-link text-primary fw-bold" href="/auth/login" tabindex="-1" aria-disabled="true">Login</a>
         </li>
         {% endif %}
     </ul>
