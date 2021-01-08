@@ -1,9 +1,10 @@
 <nav>
     <ul class="nav justify-content-end">
+        {% if session['user'] %}
         <li class="nav-item">
             <a class="nav-link text-success fw-bold" href="/add" tabindex="-1" aria-disabled="true">Add new</a>
         </li>
-        {% if session['user'] %}
+
         <li class="nav-item" style="margin-right: -1.8rem;">
             <a class="nav-link disabled" tabindex="-1" aria-disabled="true">{{ session['user']['name'] }}, </a>
         </li>

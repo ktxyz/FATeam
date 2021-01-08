@@ -7,9 +7,8 @@
         <li class="list-group-item">Height: {{ member.height }} cm</li>
         <li class="list-group-item">Weight: {{ member.weight }} kg</li>
     </ul>
-    {% if session['user'] or 1 %}
+    {% if session['user']%}
         <div class="card-body">
-            <a href="#" class="card-link text-warning">Edit</a>
             <a href="/delete/{{ member.id }}" class="card-link text-danger">Delete</a>
         </div>
     {% endif %}
