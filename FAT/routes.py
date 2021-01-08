@@ -1,4 +1,5 @@
 from flask import flash, current_app, render_template
+from flask.globals import session
 from flask_wtf import file
 
 from FAT.database import db
@@ -16,10 +17,9 @@ def index():
 
 @current_app.route('/add', methods=['GET', 'POST'])
 def add_member():
-    """
-    TODO:
-        Add check for only logged users
-    """
+    if not session.get('user'):
+        return redirect('/auth/login')
+
     form = MemberForm()
     if form.validate_on_submit():
         first_name = form.first_name.data
@@ -58,6 +58,9 @@ def add_member():
 
 @current_app.route('/delete/<id>')
 def delete_member(id):
+    if not session.get('user'):
+        return redirect('/auth/login')
+
     try:
         member = Member.query.get(id)
         db.session.delete(member)
