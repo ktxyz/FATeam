@@ -1,0 +1,13 @@
+<form method="POST" enctype="multipart/form-data" class="form" style="max-width: 400px;">
+    {{ form.csrf_token }}
+
+    <img src="" alt="" class="form-preview">
+    <label for="profile_picture"></label></br> {{ form.profile_picture }}</br></br>
+    <label for="first_name">First name</label></br> {{ form.first_name(size=127, class_='form-control') }}
+    <label for="last_name">Last name</label></br> {{ form.last_name(size=127, class_='form-control') }}
+    <label for="age">Age</label></br> {{ form.age(class_='form-control') }}
+    <label for="age">Height</label></br> {{ form.height(class_='form-control') }}
+    <label for="age">Weight</label></br> {{ form.weight(class_='form-control') }}
+    <br>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>

@@ -1,0 +1,16 @@
+<div class="preview card" style="width: 15rem;">
+    <img class="card-img-top" src="{{ member.get_image_url() }}" alt="Card image cap" style="height: 15rem; object-fit: cover;">
+    <div class="card-body">
+        <h5 class="card-title">{{ member.first_name }} {{ member.last_name }}, {{ member.age }}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Height: {{ member.height }} cm</li>
+        <li class="list-group-item">Weight: {{ member.weight }} kg</li>
+    </ul>
+    {% if session['user'] or 1 %}
+        <div class="card-body">
+            <a href="#" class="card-link text-warning">Edit</a>
+            <a href="/delete/{{ member.id }}" class="card-link text-danger">Delete</a>
+        </div>
+    {% endif %}
+</div>
