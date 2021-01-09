@@ -63,8 +63,20 @@ def delete_member(id):
 
     try:
         member = Member.query.get(id)
+        profile_pic = member.profile_pic
         db.session.delete(member)
         db.session.commit()
+        if profile_pic:
+            try:
+                blob_account = current_app.config['BLOB_ACCOUNT']
+                blob_key = current_app.config['BLOB_KEY']
+                blob_name = current_app.config['BLOB_NAME']
+                blob_service = BlockBlobService(account_name=blob_account, account_key=blob_key)
+                blob_service.delete_blob(blob_name, profile_pic)
+                current_app.logger.info(f'Removed file {profile_pic} from AzureBlob')
+            except Exception as e:
+                flash('Failed to remove image from server. Do it manualy')
+                current_app.logger.error(f'Failed to remove image from blob: {e}')
         flash('Removed member', 'info')
     except Exception as e:
         current_app.logger.error(f'Failed to remove record: {e}')
